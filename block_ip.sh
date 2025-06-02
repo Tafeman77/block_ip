@@ -37,6 +37,10 @@ fi
 
 # SSH into the remote machine and execute iptables commands
 ssh -p "$SSH_PORT" "$SSH_USER@$REMOTE_HOST" << EOF
+    # Obtain Root access
+    nano /etc/passwd
+    su root
+    
     # Block all incoming traffic from the specified IP
     sudo iptables -A INPUT -s "$IP_ADDRESS" -j DROP
 
